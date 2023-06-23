@@ -6,7 +6,7 @@ const props = withDefaults(defineProps<UiSkeletoneProps>(), {
   size: 'md',
 });
 
-const stripeQty = computed(() => props.size === 'lg' ? 7 : 6)
+const stripeQty = computed(() => props.size === 'md' ? 7 : 6)
 </script>
 
 <template>

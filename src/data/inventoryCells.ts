@@ -3,7 +3,7 @@ import ItemImage2 from '../assets/images/item-image-2.png'
 import ItemImage3 from '../assets/images/item-image-3.png'
 import { InventoryCell } from '../types/types';
 
-export const cells: InventoryCell[] = [
+export const inventoryCells: InventoryCell[] = [
   { id: 1, item: null  },
   { id: 2, item: null  },
   { id: 3, item: null  },

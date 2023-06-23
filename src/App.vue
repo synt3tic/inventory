@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import UiInventoryInfo from './components/UI/UiInventoryInfo.vue';
+import InventoryPage from './views/InventoryPage.vue';
 </script>
 
 <template>
-  <UiInventoryInfo />
+  <InventoryPage />
 </template>
 
 <style lang="scss"></style>

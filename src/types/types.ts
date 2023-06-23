@@ -19,7 +19,7 @@ export interface InventoryCell {
   item: Item | null;
 }
 export interface UiMenuProps {
-  item: Item;
+  cell: InventoryCell;
 }
 export interface Item {
   image: string;
@@ -28,5 +28,5 @@ export interface Item {
 }
 
 export interface UiSkeletoneProps {
-  size: 'sm' | 'md';
+  size?: 'sm' | 'md';
 }

@@ -3,26 +3,47 @@ import UiButton from './UiButton.vue';
 import UiIcon from './UiIcon.vue';
 import UiSkeletone from './UiSkeletone.vue';
 import UiModal from './UiModal.vue';
+import UiInput from './UiInput.vue';
 import { ref } from 'vue';
+import { UiMenuProps } from '../../types/types';
+
+const props = defineProps<UiMenuProps>();
+const emit = defineEmits(['closeMenu', 'deleteItem'])
 
 const isModalActive = ref(false);
+const itemsDeleteQty = ref('');
+
+const closeModal = () => {
+  isModalActive.value = false;
+  itemsDeleteQty.value = '';
+}
+const deleteItem = () => {
+  const item = props.cell.item;
+  if (item && item.quantity < +itemsDeleteQty.value) {
+    alert('Введите верное значение');
+  } else {
+    emit('deleteItem', +itemsDeleteQty.value);
+  }
+}
 </script>
 
 <template>
   <div class="interaction-menu">
     <div class="interaction-menu__close-button">
-      <UiButton size="sm">
+      <UiButton size="sm" @click="emit('closeMenu')">
         <UiIcon icon="close" />
       </UiButton>
     </div>
     <div class="interaction-menu__item-image">
-      <img src="../../assets/images/item-image-2.png" alt="item-image" style="width: 100%;" />
+      <img :src="cell.item?.image " alt="item-image" style="width: 100%;" />
     </div>
     <div class="interaction-menu__stroke"></div>
     <UiSkeletone size="sm" />
     <div class="interaction-menu__stroke"></div>
     <Transition name="slide-fade">
-      <UiModal v-if="isModalActive" @close-modal="isModalActive = false" />
+      <UiModal v-if="isModalActive" @close-modal="closeModal" @submit-form="deleteItem">
+        <UiInput v-model="itemsDeleteQty" type="number" placeholder="Введите количество" />
+      </UiModal>
     </Transition>
     <UiButton color="primary-red" @click="isModalActive = true">Удалить предмет</UiButton>
   </div>
@@ -39,11 +60,14 @@ $background-color: #262626;
   align-items: center;
   position: absolute;
   right: 0;
+  bottom: 0;
+  top: 0;
   width: 250px;
   padding: 8px;
   border-left: $primary-border;
   background-color: $background-color;
   backdrop-filter: blur(4px);
+  transform: translateX(0);
 
   &__close-button {
     display: flex;
