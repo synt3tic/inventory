@@ -38,15 +38,11 @@ const dropHandler = (event: Event, index: number) => {
   event.preventDefault();
   if (draggedItemIndex.value !== null) {
     const draggedItem: Item = Object.assign({}, cells.value[draggedItemIndex.value].item);
+    const dropZoneItem: Item | null = cells.value[index].item ? Object.assign({}, cells.value[index].item) : null;
 
-    if (cells.value[draggedItemIndex.value].item && cells.value[index].item) {
-      const dropZoneItem: Item = Object.assign({}, cells.value[index].item);
-      cells.value[draggedItemIndex.value].item = dropZoneItem;
-    } else {
-      cells.value[draggedItemIndex.value].item = null;
-    }
-
+    cells.value[draggedItemIndex.value].item = dropZoneItem;
     cells.value[index].item = { ...draggedItem };
+    
     localStorage.setItem('inventory-cells', JSON.stringify(cells.value));
   }
   draggedItemIndex.value = null;
