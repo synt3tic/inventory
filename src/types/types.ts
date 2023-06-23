@@ -3,3 +3,11 @@ export interface UiIconProps {
 }
 
 export type IconNames = 'close' | 'cursor' | 'cursor-pointer'
+
+export interface UiButtonProps {
+  size?: ButtonSizes;
+  color?: ButtonColors
+}
+
+export type ButtonColors = 'primary-red' | 'primary-white'
+export type ButtonSizes = 'sm' | 'md' | 'lg'
