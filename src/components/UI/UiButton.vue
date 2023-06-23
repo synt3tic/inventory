@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<UiButtonProps>(), {
 </script>
 
 <template>
-  <button :class="`ui-button_${props.color} ui-button_${props.size}`" class="ui-button">
+  <button :class="`ui-button_${props.color} ui-button_${props.size}`" class="ui-button" type="button">
     <slot />
   </button>
 </template>
@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<UiButtonProps>(), {
 $primary-red: #FA7272;
 $primary-white: #FFFFFF;
 $white-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.2), 0 2px 4px -2px rgba(243, 243, 243, 0.2);
-$red-shadow: 0 4px 6px -1px rgba(214, 102, 136, 0.2), 0 2px 4px -2px rgba(226, 128, 169, 0.2);
+$red-shadow: 0 4px 6px -1px rgba(214, 102, 136, 0.3), 0 2px 4px -2px rgba(226, 128, 169, 0.3);
 .ui-button {
   width: 100%;
   border-radius: 8px;
