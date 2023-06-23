@@ -2,7 +2,7 @@
 import { UiButtonProps } from '../../types/types'
 
 const props = withDefaults(defineProps<UiButtonProps>(), {
-  color: 'primary-red',
+  color: 'primary-white',
   size: 'md',
 })
 </script>
@@ -54,6 +54,11 @@ $red-shadow: 0 4px 6px -1px rgba(214, 102, 136, 0.2), 0 2px 4px -2px rgba(226, 1
   &_sm {
     width: 24px;
     height: 24px;
+    background: none;
+
+    &:hover {
+      box-shadow: none;
+    } 
   }
 
   &_md {

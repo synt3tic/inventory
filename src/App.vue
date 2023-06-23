@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import UiButton from './components/UI/UiButton.vue';
+import { ref } from 'vue';
+import UiInput from './components/UI/UiInput.vue';
+
+const inputValue = ref('22');
 </script>
 
 <template>
-  <UiButton>Удалить предмет</UiButton>
+  <UiInput v-model="inputValue" type="number" placeholder="Введите количество" />
 </template>
 
 <style lang="scss"></style>
