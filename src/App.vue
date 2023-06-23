@@ -1,15 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import UiModal from './components/UI/UiModal.vue';
-import UiInput from './components/UI/UiInput.vue';
-
-const inputValue = ref('');
+import UiInventoryInfo from './components/UI/UiInventoryInfo.vue';
 </script>
 
 <template>
-  <UiModal>
-    <UiInput v-model="inputValue" type="number" />
-  </UiModal>
+  <UiInventoryInfo />
 </template>
 
 <style lang="scss"></style>

@@ -13,3 +13,20 @@ export type ButtonSizes = 'sm' | 'md' | 'lg'
 export interface UiInputProps {
   modelValue: string | number;
 }
+
+export interface InventoryCell {
+  id: number;
+  item: Item | null;
+}
+export interface UiMenuProps {
+  item: Item;
+}
+export interface Item {
+  image: string;
+  name: string; 
+  quantity: number; 
+}
+
+export interface UiSkeletoneProps {
+  size: 'sm' | 'md';
+}
