@@ -31,12 +31,14 @@ const dragStartHandler = (event: Event, index: number) => {
     event.preventDefault();
   }
 };
-const dragOverHandler = (event: Event) => event.preventDefault();
+const dragOverHandler = (event: Event) => {
+  event.preventDefault();
+};
 const dropHandler = (event: Event, index: number) => {
   event.preventDefault();
   if (draggedItemIndex.value !== null) {
     const draggedItem: Item = Object.assign({}, cells.value[draggedItemIndex.value].item);
-    
+
     if (cells.value[draggedItemIndex.value].item && cells.value[index].item) {
       const dropZoneItem: Item = Object.assign({}, cells.value[index].item);
       cells.value[draggedItemIndex.value].item = dropZoneItem;
@@ -69,7 +71,7 @@ const deleteItem = (qty: number) => {
       v-for="(cell, index) in cells"
       :key="cell.id"
       :draggable="true"
-      :class="{ 'inventory-list__item_dragged': draggedItemIndex !== null }"
+      :class="{ 'inventory-list__item_dragged': draggedItemIndex === index }"
       class="inventory-list__item item" 
       @click="openMenu(cell)"
       @dragstart="dragStartHandler($event, index)"
