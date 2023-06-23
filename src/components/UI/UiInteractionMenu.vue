@@ -19,7 +19,7 @@ const closeModal = () => {
 }
 const deleteItem = () => {
   const item = props.cell.item;
-  if (item && item.quantity < +itemsDeleteQty.value) {
+  if (item && item.quantity < +itemsDeleteQty.value || !+itemsDeleteQty.value) {
     alert('Введите верное значение');
   } else {
     emit('deleteItem', +itemsDeleteQty.value);
