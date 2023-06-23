@@ -36,11 +36,21 @@ const dropHandler = (event: Event, index: number) => {
   event.preventDefault();
   if (draggedItemIndex.value !== null) {
     const draggedItem: Item = Object.assign({}, cells.value[draggedItemIndex.value].item);
-    cells.value[draggedItemIndex.value].item = null;
+    
+    if (cells.value[draggedItemIndex.value].item && cells.value[index].item) {
+      const dropZoneItem: Item = Object.assign({}, cells.value[index].item);
+      cells.value[draggedItemIndex.value].item = dropZoneItem;
+    } else {
+      cells.value[draggedItemIndex.value].item = null;
+    }
+
     cells.value[index].item = { ...draggedItem };
     localStorage.setItem('inventory-cells', JSON.stringify(cells.value));
   }
+  draggedItemIndex.value = null;
 };
+
+
 const deleteItem = (qty: number) => {
   cells.value = cells.value.map(el => {
     if (el.item && (el.id === clickedCell.value?.id)) {
@@ -59,13 +69,12 @@ const deleteItem = (qty: number) => {
       v-for="(cell, index) in cells"
       :key="cell.id"
       :draggable="true"
-      :class="{ 'inventory-list__item_no-hover': draggedItemIndex !== null }"
+      :class="{ 'inventory-list__item_dragged': draggedItemIndex !== null }"
       class="inventory-list__item item" 
       @click="openMenu(cell)"
       @dragstart="dragStartHandler($event, index)"
       @dragover="dragOverHandler($event)"
       @drop="dropHandler($event, index)"
-      @dragend="draggedItemIndex = null"
     >
       <img v-if="cell.item" :src="cell.item.image" alt="item-image">
       <div v-if="cell.item" class="item__counter">{{ cell.item?.quantity }}</div>
@@ -116,7 +125,7 @@ $semi-transparent-white: rgba(255, 255, 255, 0.5);
       background-color: $cell-hover-color;
     }
   
-    &_no-hover:hover {
+    &_dragged:hover {
       background-color: $cell-color;
     }
   }
